@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong">
         <activity
+            android:name=".SenderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListConservation"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="true" />
         <activity
