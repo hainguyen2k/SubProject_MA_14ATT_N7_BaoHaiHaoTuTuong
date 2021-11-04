@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong">
         <activity
+            android:name=".activity_chat"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
