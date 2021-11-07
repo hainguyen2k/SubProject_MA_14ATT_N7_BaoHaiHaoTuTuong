@@ -64,6 +64,13 @@
     ]]>
 
     <Button
+        android:id="@+id/button3"
+        android:layout_width="307dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="100dp"
+        android:text="Login"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
         android:id="@+id/button"
         android:layout_width="347dp"
         android:layout_height="51dp"
