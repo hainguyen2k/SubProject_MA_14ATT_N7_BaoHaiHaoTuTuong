@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.903"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" /><![CDATA[
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordSI" /><![CDATA[
 
 
     "
@@ -64,14 +64,8 @@
     ]]>
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="307dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="100dp"
-        android:text="Login"
-        android:textSize="24sp"
-        android:textStyle="normal|bold"
-        android:id="@+id/button"
+
+        android:id="@+id/btnSignup2"
         android:layout_width="347dp"
         android:layout_height="51dp"
         android:layout_marginStart="61dp"
@@ -92,11 +86,11 @@
         android:layout_height="56dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toTopOf="@+id/edtPasswordSI"
         app:srcCompat="@drawable/mat" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editEmailSI"
         android:layout_width="381dp"
         android:layout_height="70dp"
         android:layout_marginTop="244dp"
@@ -112,7 +106,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/edtPasswordSI"
         android:layout_width="388dp"
         android:layout_height="61dp"
         android:layout_marginStart="9dp"
@@ -127,10 +121,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editEmailSI" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnLogin"
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
@@ -138,7 +132,7 @@
         android:text="Login"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignup2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="parent" />
