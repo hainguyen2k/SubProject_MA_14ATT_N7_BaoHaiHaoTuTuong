@@ -3,13 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-
-        <entry key="..\:/codeNhom7/SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong/app/src/main/res/layout/activity_main.xml" value="0.264" />
-
         <entry key="..\:/School/N4/ANDROID2/BTL/SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong/app/src/main/res/drawable/cus_btnsignup.xml" value="0.290625" />
         <entry key="..\:/School/N4/ANDROID2/BTL/SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/School/N4/ANDROID2/BTL/SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong/app/src/main/res/layout/activity_sign_up.xml" value="0.2604166666666667" />
-
+        <entry key="..\:/codeNhom7/SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/codeNhom7/SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong/app/src/main/res/layout/activity_sign_up.xml" value="0.259375" />
       </map>
     </option>
   </component>
