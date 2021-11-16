@@ -43,11 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(acct);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-    }
-
-    private void updateUI(GoogleSignInAccount acct) {
     }
 
     @Override
@@ -63,21 +59,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
         }
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            updateUI(account);
-        }catch (ApiException e){
-            Log.w(TAG, "signInResult:faild code="+ e.getStatusCode());
-            updateUI(null);
-        }
-
+//    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+//        try {
+//            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+//            updateUI(account);
+//            Intent intent = new Intent(MainActivity.this, ListConservation.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//            finish();
+//        }catch (ApiException e){
+//            Log.w(TAG, "signInResult:faild code="+ e.getStatusCode());
+//            updateUI(null);
+//        }
+//
+//    }
+    private void handleSignInResult(GoogleSignInResult result) {
+    if(result.isSuccess()){
+            Intent intent = new Intent(MainActivity.this, ListConservation.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+    }else {
     }
+}
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
