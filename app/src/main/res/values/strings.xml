@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SubProject_MA_14ATT_N7_BaoHaiHaoTuTuong</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
