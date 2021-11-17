@@ -35,27 +35,12 @@
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="163dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="20dp"
-        android:text="Forgot Password?"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.903"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPasswordSI" />
-
 
     <Button
 
         android:id="@+id/btnSignup2"
-        android:layout_width="347dp"
+        android:layout_width="0dp"
         android:layout_height="51dp"
-        android:layout_marginStart="61dp"
-        android:layout_marginEnd="43dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/cus_btnsignup"
         android:text="Sign up"
@@ -63,11 +48,11 @@
         android:textStyle="bold"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btnMaps"
         android:layout_width="52dp"
         android:layout_height="56dp"
         android:layout_marginEnd="32dp"
@@ -93,45 +78,40 @@
 
     <EditText
         android:id="@+id/edtPasswordSI"
-        android:layout_width="388dp"
+        android:layout_width="0dp"
         android:layout_height="61dp"
-        android:layout_marginStart="9dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="14dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
         android:textColor="#FBF9F9"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editEmailSI"
+        app:layout_constraintStart_toStartOf="@+id/editEmailSI"
         app:layout_constraintTop_toBottomOf="@+id/editEmailSI" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="345dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/cus_btnsignup"
-        android:text="Login"
+        android:text="sign in"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnSignup2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.623"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_button"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_button" />
 
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edtPasswordSI"
+        app:layout_constraintStart_toStartOf="@+id/edtPasswordSI"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.718">
 
