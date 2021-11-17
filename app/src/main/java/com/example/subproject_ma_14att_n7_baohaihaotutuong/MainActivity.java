@@ -38,12 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+    }
+
+    private void updateUI(GoogleSignInAccount account) {
     }
 
     @Override
@@ -59,11 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
         }
     }
-
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 //    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
 //        try {
 //            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -78,20 +85,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        }
 //
 //    }
-    private void handleSignInResult(GoogleSignInResult result) {
-    if(result.isSuccess()){
-            Intent intent = new Intent(MainActivity.this, ListConservation.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-    }else {
-    }
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            startActivity(new Intent(MainActivity.this, ListConservation.class));
+            // Signed in successfully, show authenticated UI.
+
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.d("message", e.toString());
+        }
 }
 
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+
 
 }
 
