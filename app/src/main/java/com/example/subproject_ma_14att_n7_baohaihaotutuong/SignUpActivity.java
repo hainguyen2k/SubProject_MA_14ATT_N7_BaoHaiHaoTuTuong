@@ -43,7 +43,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText email, password, username;
     Button btnsignup;
-    String url = "http://192.168.1.13:8080/register";
+    //    String url = "http://192.168.1.13:8080/register";
+    String url = "https://appchat-server.herokuapp.com/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +57,18 @@ public class SignUpActivity extends AppCompatActivity {
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
                 String txt_username = username.getText().toString();
-                if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)){
+                if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
                     Toast.makeText(SignUpActivity.this, "TextField is empty", Toast.LENGTH_SHORT).show();
-                } else if (txt_password.length() < 6 ){
+                } else if (txt_password.length() < 6) {
                     Toast.makeText(SignUpActivity.this, "Password at least 6 character", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     signup(url);
                 }
             }
         });
     }
 
-//    private void signup(String url){
+    //    private void signup(String url){
 //        StringRequest stringRequest = new StringRequest(
 //                Request.Method.POST,
 //                url,
@@ -113,13 +113,13 @@ public class SignUpActivity extends AppCompatActivity {
 //        RequestQueue requestQueue = Volley.newRequestQueue(this);
 //        requestQueue.add(stringRequest);
 //    }
-    private void signup(String url){
+    private void signup(String url) {
         JSONObject js = new JSONObject();
         try {
             js.put("email", email.getText().toString());
             js.put("password", password.getText().toString());
             js.put("username", username.getText().toString());
-        } catch (JSONException  e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -156,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
         startActivity(new Intent(SignUpActivity.this, MainActivity.class));
 
     }
+
     private void mappingID() {
 
         email = findViewById(R.id.edtemail);
