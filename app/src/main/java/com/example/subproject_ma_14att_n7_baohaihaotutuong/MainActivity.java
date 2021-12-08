@@ -45,13 +45,14 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String KEY_EMAIL="email";
-    public static final String KEY_PASSWORD="password";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PASSWORD = "password";
     private int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
     EditText emailSI, passwordSI;
     Button btnLogin;
-    String url = "http://192.168.1.13:8080/login";
+    //    String url = "http://192.168.1.13:8080/login";
+    String url = "https://appchat-server.herokuapp.com/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,11 +178,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        RequestQueue requestQueue = Volley.newRequestQueue(this);
 //        requestQueue.add(stringRequest);
 //    }
-    private void openProfile(){
+    private void openProfile() {
         Intent intent = new Intent(this, ListConservation.class);
         intent.putExtra(KEY_EMAIL, emailSI.getText().toString());
         startActivity(intent);
     }
+
     private void Signin(String url) {
         JSONObject js = new JSONObject();
         try {
