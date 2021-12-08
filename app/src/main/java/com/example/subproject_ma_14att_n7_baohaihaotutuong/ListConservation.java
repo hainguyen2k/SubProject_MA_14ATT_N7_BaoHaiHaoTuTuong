@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +18,12 @@ import com.google.android.gms.tasks.Task;
 import java.util.LinkedList;
 
 public class ListConservation extends AppCompatActivity implements View.OnClickListener {
-
+    private TextView tv_email;
     GoogleSignInClient mGoogleSignInClient;
     RecyclerView rv_Sender;
     ListConservationAdapter adapter;
     LinkedList<Sender> senders = new LinkedList<>();
+    public static final String KEY_EMAIL="email";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,15 @@ public class ListConservation extends AppCompatActivity implements View.OnClickL
         btnLogout.setClickable(true);
         btnLogout.setOnClickListener(this);
 
+        ImageView btnProfile = (ImageView) findViewById(R.id.btnProfile);
+        btnProfile.setClickable(true);
+        btnProfile.setOnClickListener(this);
 
+        tv_email = (TextView) findViewById(R.id.tv_email);
         rv_Sender = findViewById(R.id.rv_Sender);
+
+        Intent intent = getIntent();
+        tv_email.setText(intent.getStringExtra(MainActivity.KEY_EMAIL));
 
         senders.add(new Sender("Xuan Hai", "Hola !", R.drawable.avtsender));
         senders.add(new Sender("Thanh Tu", "Hola !", R.drawable.avtsender));
@@ -65,6 +74,12 @@ public class ListConservation extends AppCompatActivity implements View.OnClickL
                 });
     }
 
+    private void openProfile() {
+        Intent intent = new Intent(ListConservation.this, ProfileActivity.class);
+        intent.putExtra(KEY_EMAIL, tv_email.getText().toString());
+        startActivity(intent);
+    }
+
     private void openMaps() {
         Intent intent = new Intent(ListConservation.this, MapsActivity.class);
         startActivity(intent);
@@ -78,6 +93,9 @@ public class ListConservation extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btnLogout:
                 signOut();
+                break;
+            case R.id.btnProfile:
+                openProfile();
                 break;
         }
     }

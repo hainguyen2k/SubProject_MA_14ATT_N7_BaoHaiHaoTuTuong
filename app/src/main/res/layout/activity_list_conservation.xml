@@ -20,16 +20,27 @@
     <TextView
 
         android:id="@+id/textView"
-        android:layout_width="119dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="110dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="4dp"
         android:text="nighty"
         android:textColor="#6A52FA"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+
+        android:id="@+id/tv_email"
+        android:layout_width="115dp"
+        android:layout_height="29dp"
+        android:text="tv_email"
+        android:textColor="#B2ECECEF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/btnMaps"
@@ -72,7 +83,7 @@
         app:srcCompat="@drawable/messenger" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/btnProfile"
         android:layout_width="44dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -87,9 +98,9 @@
         android:layout_width="44dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/btnProfile"
+        app:layout_constraintStart_toEndOf="@+id/btnProfile"
+        app:layout_constraintTop_toTopOf="@+id/btnProfile"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/address_book" />
 
