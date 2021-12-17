@@ -5,9 +5,12 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 import android.accounts.AccountManagerFuture;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +30,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.subproject_ma_14att_n7_baohaihaotutuong.model.User;
+import com.example.subproject_ma_14att_n7_baohaihaotutuong.remote.APICall;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -36,6 +41,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +50,19 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String BASE_URL = "https://appchat-server.herokuapp.com/";
+    public static final String MY_PREFRENCE = "myPrefs";
+    public static final String TOKEN = "myToken";
+    private Retrofit retrofit;
+    private Context context;
 
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
@@ -95,6 +114,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+//    private void Signin() {
+//        build();
+//        APICall apiCall = retrofit.create(APICall.class);
+//
+//        String email = emailSI.getText().toString();
+//        String password = passwordSI.getText().toString();
+//
+//        User user = new User(email, password);
+//
+//        Call<User> call = apiCall.userLogin(user);
+//
+//        call.enqueue(new Callback<User>(){
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//
+////                if (response.isSuccessful()) {
+//                    User data = response.body();
+////                    String email = data.getEmail();
+//                    String token = data.getToken();
+//                    Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+//
+//                    SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFRENCE, context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString(TOKEN, token);
+//                    editor.putString("email", email);
+//                    editor.apply();
+//
+//                    startActivity(new Intent(MainActivity.this, ListConservation.class));
+//                    finish();
+////                }else {
+////                    Log.d("TAG", response.message());
+////                    Toast.makeText(MainActivity.this, "Invalid email or password, please try again", Toast.LENGTH_SHORT).show();
+////                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                Log.d("TAG", t.getMessage());
+//            }
+//        });
+//    }
+//
+//    private void build() {
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -144,40 +212,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //    private void Signin() {
-//        String email = emailSI.getText().toString().trim();
-//        String password = passwordSI.getText().toString().trim();
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        if (response.trim().equals("success")) {
-//                            openProfile();
-//                        } else {
-//                            Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-//                    }
-//                }) {
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> map = new HashMap<String, String>();
-//                map.put("Content-Type", "application/json; charset=utf-8");
-//                map.put("email", email);
-//                map.put("password", password);
-//                return map;
-//            }
-//        };
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(stringRequest);
-//    }
+
     private void openProfile() {
         Intent intent = new Intent(this, ListConservation.class);
         intent.putExtra(KEY_EMAIL, emailSI.getText().toString());
@@ -216,6 +251,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
+                String credentials = "email" + ":" + "password";
+                String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                System.out.println(base64EncodedCredentials);
+                headers.put("Authorization", "Basic " + base64EncodedCredentials);
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
